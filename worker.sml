@@ -283,7 +283,9 @@ in
       val root = OS.FileSys.getDir()
       val holdir = OS.Path.concat(root,HOLDIR)
       val holmake_cmd =
-        String.concat["HOLDIR='",holdir,"' /usr/bin/time ",time_options,
+        String.concat["ulimit -v ", Int.toString (50 * 1024 * 1024), "; ",
+                      "HOLDIR='", holdir, "'",
+                      " /usr/bin/time ", time_options,
                       " '",holdir,"/bin/Holmake' --qof"]
       val cakemldir = OS.Path.concat(root,CAKEMLDIR)
       val () = OS.FileSys.chDir CAKEMLDIR
